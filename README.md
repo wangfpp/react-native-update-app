@@ -88,6 +88,8 @@ dependencies {
 在主程序`android/app/src/main/AndroidManifest.xml`里增加下面代码。
 
 ```
+<manifest   xmlns:tools="http://schemas.android.com/tools">  <!-- 增加一个tools-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>　<!--增加一个安装应用的权限 -->
 <application ..>
 ...
         // 增加下面代码
@@ -103,6 +105,15 @@ dependencies {
                 android:resource="@xml/provider_paths"/>
     </provider>
 </application>
+```
+
+在`android/app/src/main/res/xml/provider_paths.xml`中增加如下代码　没有xml文件夹和`provider_paths.xml`文件就新建一个
+```
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <root-path name="name" path="" />
+</paths>
+
 ```
 
 ## 使用
@@ -136,7 +147,7 @@ class App extends Component{
                 <RNUpdate
                     onBeforeStart={this.onBeforeStart}
                     progressBarColor="#f50"
-                    updateBoxWidth={250},      // 选填，升级框的宽度
+                    updateBoxWidth={250}     // 选填，升级框的宽度
                     updateBoxHeight={250}      // 选填，升级框的高度
                     updateBtnHeight={38}       // 选填，升级按钮的高度
                     bannerImage={require('./imgs/a.png')}  // 选填，换升级弹框图片
